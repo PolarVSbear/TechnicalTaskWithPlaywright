@@ -5,10 +5,16 @@ namespace Core
     public class MainPage
     {
         protected IPage Page;
-        string address = "https://practice.bpbonline.com/";
-        string dropDownItem = "Microsoft";
-        private string headerLocator = "//div[@id='bodyContent']/h1";
+        private string address = "https://practice.bpbonline.com/";
+        private string dropDownItem = "Microsoft";
         private string myAccountHeader = "My Account Information";
+        private string email = "bpb@bpb.com";
+        private string password = "bpb@123";
+        private string headerLocator = "//div[@id='bodyContent']/h1";
+        private string myAccountLocator = "text='My Account'";
+        private string emailLocator = "[name='email_address']";
+        private string passLocator = "[name='password']";
+        private string signInLocator = "#tdb5";
 
         public MainPage(IPage page)
         {
@@ -38,10 +44,10 @@ namespace Core
 
         public async Task FillMyAccount()
         {
-            await Page.ClickAsync("text='My Account'");
-            await Page.FillAsync("[name='email_address']", "bpb@bpb.com");
-            await Page.FillAsync("[name='password']", "bpb@123");
-            await Page.ClickAsync("#tdb5");
+            await Page.ClickAsync(myAccountLocator);
+            await Page.FillAsync(emailLocator, email);
+            await Page.FillAsync(passLocator, password);
+            await Page.ClickAsync(signInLocator);
         }
 
         public async Task<bool> IsMyAccountHeaderContains()
