@@ -3,6 +3,7 @@
 namespace Tests
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class DropDownTest : BaseTest
     {
         [Test]

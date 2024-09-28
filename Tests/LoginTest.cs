@@ -1,6 +1,7 @@
 ﻿namespace Tests
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
         [Test]
