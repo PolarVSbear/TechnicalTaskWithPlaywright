@@ -20,8 +20,11 @@ namespace Tests
         public async Task Test()
         {
             await _page.GotoAsync("https://practice.bpbonline.com/");
+            string selectedManufacturer = "Microsoft";
+            await _page.SelectOptionAsync("select[name='manufacturers_id']", selectedManufacturer);
 
-            await _page.SelectOptionAsync("select[name='manufacturers_id']", "Microsoft");
+            var h1Text = await _page.InnerTextAsync("//div[@id='bodyContent']/h1");
+            StringAssert.Contains(selectedManufacturer, h1Text);
         }
 
         [TearDown]
