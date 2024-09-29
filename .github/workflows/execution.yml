@@ -61,4 +61,4 @@ jobs:
         run: dotnet restore TechnicalTaskWithPlaywright.sln
 
       - name: Run tests
-        run: dotnet test TechnicalTaskWithPlaywright.Tests/TechnicalTaskWithPlaywright.Tests.csproj --configuration Release --verbosity normal --filter "FullyQualifiedName~${{ matrix.test }}"
+        run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal --filter "FullyQualifiedName~${{ matrix.test }}"
