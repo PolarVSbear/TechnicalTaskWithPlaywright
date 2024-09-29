@@ -85,13 +85,13 @@ jobs:
         run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal --filter "FullyQualifiedName~${{ matrix.test }}"
         #run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal --logger "console;verbosity=detailed"
 
-      - name: Install Allure CLI
-        run: |
-          sudo apt-get install allure
+        #- name: Install Allure CLI
+        #run: |
+          #sudo apt-get install allure
 
-      - name: Generate Allure Report
-        run: |
-          allure generate ./allure-results --output ./allure-report
+        #- name: Generate Allure Report
+        #run: |
+          #allure generate ./allure-results --output ./allure-report
           
-      - name: Serve Allure Report
-        run: allure serve ./allure-report
+        #- name: Serve Allure Report
+        #run: allure serve ./allure-report
