@@ -33,6 +33,7 @@ namespace Core
 
         private async Task<string> AssignHeaderText()
         {
+            await Page.WaitForSelectorAsync(headerLocator);
             return await Page.InnerTextAsync(headerLocator);
         }
 
