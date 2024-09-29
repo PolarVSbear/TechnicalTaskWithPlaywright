@@ -29,6 +29,12 @@ jobs:
 
       - name: Update PATH
         run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
+      - name: List global tools
+        run: dotnet tool list --global
+
+      - name: Build the project  # Add this step
+        run: dotnet build TechnicalTaskWithPlaywright.sln
         
       - name: Install Playwright Browsers
         run: playwright install
@@ -57,6 +63,12 @@ jobs:
 
       - name: Update PATH
         run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
+      - name: List global tools
+        run: dotnet tool list --global
+
+      - name: Build the project  # Add this step
+        run: dotnet build TechnicalTaskWithPlaywright.sln
 
       - name: Install Playwright Browsers
         run: playwright install
