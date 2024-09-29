@@ -33,8 +33,11 @@ jobs:
       - name: List global tools
         run: dotnet tool list --global
 
-      - name: Build the project  # Add this step
+      - name: Build the project
         run: dotnet build TechnicalTaskWithPlaywright.sln
+
+      - name: List Playwright Cache
+        run: ls -R $HOME/.cache/ms-playwright
         
       - name: Install Playwright Browsers
         run: playwright install
