@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.0.8'
+          dotnet-version: '8.0.x'
 
       - name: Install Playwright Browsers
         run: dotnet playwright install
@@ -38,7 +38,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.0.8'
+          dotnet-version: '8.0.x'
 
       - name: Install Playwright Browsers
         run: dotnet playwright install
