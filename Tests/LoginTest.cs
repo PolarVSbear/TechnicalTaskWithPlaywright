@@ -1,7 +1,10 @@
-﻿namespace Tests
+﻿using Allure.NUnit;
+
+namespace Tests
 {
     [TestFixture]
-    //[Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.All)]
+    [AllureNUnit]
     public class LoginTest : BaseTest
     {
         [Test]

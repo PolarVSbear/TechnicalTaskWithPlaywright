@@ -1,9 +1,11 @@
-﻿using Core;
+﻿using Allure.NUnit;
+using Core;
 
 namespace Tests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
+    [AllureNUnit]
     public class DropDownTest : BaseTest
     {
         [Test]
