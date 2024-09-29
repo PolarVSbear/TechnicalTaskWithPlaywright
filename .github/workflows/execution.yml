@@ -74,4 +74,4 @@ jobs:
         run: playwright install
 
       - name: Run tests
-        run: dotnet test TechnicalTaskWithPlaywright.Tests/TechnicalTaskWithPlaywright.Tests.csproj --configuration Release --no-build --verbosity normal --filter "Browser=${{ matrix.browser }}"
+        run: dotnet test Tests/Tests.csproj --configuration Release --no-build --verbosity normal --filter "Browser=${{ matrix.browser }}"
