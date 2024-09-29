@@ -39,8 +39,11 @@ jobs:
         #- name: List Playwright Cache
         #run: ls -R $HOME/.cache/ms-playwright
         
-      - name: Install Playwright Browsers
-        run: playwright install || (echo "Failed to install Playwright browsers" && exit 1)
+        #- name: Install Playwright Browsers
+        #run: playwright install || (echo "Failed to install Playwright browsers" && exit 1)
+
+      - name: Install Playwright Browsers via PowerShell
+        run: pwsh -Command "& { ./bin/Debug/net8.0/playwright.ps1 install }" # Adjust path as necessary
 
   test:
     runs-on: ubuntu-latest
