@@ -13,7 +13,7 @@ namespace Core
         private string password = "bpb@123";
         private string headerLocator = "//div[@id='bodyContent']/h1";
         //private string headerLocator = "//h1";
-        private string logOffLocator = "//a[@id='tdb4']/span";
+        //private string logOffLocator = "//a[@id='tdb4']/span";
         private string myAccountLocator = "text='My Account'";
         private string emailLocator = "[name='email_address']";
         private string passLocator = "[name='password']";
@@ -59,7 +59,7 @@ namespace Core
         {
             //await Page.WaitForSelectorAsync("//h1");
             //return await Page.InnerTextAsync(headerLocator);
-            return await Page.InnerTextAsync(logOffLocator);
+            return await Page.InnerTextAsync("//a[@id='tdb4']/span");
         }
 
         public async Task<bool> IsMyAccountHeaderContains()
