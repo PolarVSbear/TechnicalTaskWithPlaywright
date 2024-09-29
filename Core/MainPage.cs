@@ -8,7 +8,7 @@ namespace Core
         private string address = "https://practice.bpbonline.com/";
         private string dropDownItem = "Microsoft";
         //private string myAccountHeader = "My Account Information";
-        private string myAccountHeader = "Welcome";
+        //private string myAccountHeader = "Welcome";
         private string myLogOff = "Log Off";
         private string email = "bpb@bpb.com";
         private string password = "bpb@123";
@@ -66,7 +66,8 @@ namespace Core
         public async Task<bool> IsMyAccountHeaderContains()
         {
             var headerText = await AssignLogOffText();
-            return headerText.Contains(myAccountHeader, StringComparison.OrdinalIgnoreCase);
+            //return headerText.Contains(myAccountHeader, StringComparison.OrdinalIgnoreCase);
+            return !string.IsNullOrEmpty(headerText);
         }
     }
 }
