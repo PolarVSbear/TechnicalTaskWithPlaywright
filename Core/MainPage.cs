@@ -10,7 +10,8 @@ namespace Core
         private string myAccountHeader = "My Account Information";
         private string email = "bpb@bpb.com";
         private string password = "bpb@123";
-        private string headerLocator = "//div[@id='bodyContent']/h1";
+        //private string headerLocator = "//div[@id='bodyContent']/h1";
+        private string headerLocator = "//h1";
         private string myAccountLocator = "text='My Account'";
         private string emailLocator = "[name='email_address']";
         private string passLocator = "[name='password']";
