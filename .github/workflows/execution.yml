@@ -30,14 +30,17 @@ jobs:
       - name: Update PATH
         run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
-      - name: List global tools
-        run: dotnet tool list --global
+        #- name: List global tools
+        #run: dotnet tool list --global
 
-      - name: Build the project  # Add this step
+      - name: Build the project
         run: dotnet build TechnicalTaskWithPlaywright.sln
+
+        #- name: List Playwright Cache
+        #run: ls -R $HOME/.cache/ms-playwright
         
       - name: Install Playwright Browsers
-        run: playwright install
+        run: playwright install || (echo "Failed to install Playwright browsers" && exit 1)
 
   test:
     runs-on: ubuntu-latest
@@ -61,4 +64,15 @@ jobs:
         run: dotnet restore TechnicalTaskWithPlaywright.sln
 
       - name: Run tests
-        run: dotnet test TechnicalTaskWithPlaywright.Tests/TechnicalTaskWithPlaywright.Tests.csproj --configuration Release --verbosity normal --filter "FullyQualifiedName~${{ matrix.test }}"
+        run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal --filter "FullyQualifiedName~${{ matrix.test }}"
+
+      - name: Install Allure CLI
+        run: |
+          sudo apt-get install allure
+
+      - name: Generate Allure Report
+        run: |
+          allure generate ./allure-results --output ./allure-report
+
+      - name: Serve Allure Report
+        run: allure serve ./allure-report
