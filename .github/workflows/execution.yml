@@ -31,7 +31,7 @@ jobs:
         run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
         
       - name: Install Playwright Browsers
-        run: dotnet playwright install
+        run: playwright install
 
   test:
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:
         run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
       - name: Install Playwright Browsers
-        run: dotnet playwright install
+        run: playwright install
 
       - name: Run tests
         run: dotnet test TechnicalTaskWithPlaywright.Tests/TechnicalTaskWithPlaywright.Tests.csproj --configuration Release --no-build --verbosity normal --filter "Browser=${{ matrix.browser }}"
