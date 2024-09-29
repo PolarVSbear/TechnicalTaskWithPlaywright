@@ -7,7 +7,7 @@ namespace Tests
     [AllureNUnit]
     public class LoginTest : BaseTest
     {
-        [Test]
+        [Test, Timeout(60000)]
         public async Task Test()
         {
             await MainPage.NavigatePage();
