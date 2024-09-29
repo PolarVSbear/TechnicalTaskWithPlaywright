@@ -44,7 +44,9 @@ jobs:
     needs: build
     strategy:
       matrix:
-        browser: [chromium, firefox]
+        test: 
+          - DropDownTest
+          - LoginTest
 
     steps:
       - name: Checkout code
