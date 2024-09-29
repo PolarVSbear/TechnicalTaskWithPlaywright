@@ -23,6 +23,12 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore TechnicalTaskWithPlaywright.sln
+
+      - name: Install Playwright CLI
+        run: dotnet tool install --global Microsoft.Playwright.CLI
+
+      - name: Update PATH
+        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
         
       - name: Install Playwright Browsers
         run: dotnet playwright install
@@ -45,6 +51,12 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore TechnicalTaskWithPlaywright.sln
+
+      - name: Install Playwright CLI
+        run: dotnet tool install --global Microsoft.Playwright.CLI
+
+      - name: Update PATH
+        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
       - name: Install Playwright Browsers
         run: dotnet playwright install
