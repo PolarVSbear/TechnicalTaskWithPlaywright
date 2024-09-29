@@ -57,7 +57,7 @@ namespace Core
 
         private async Task<string> AssignLogOffText()
         {
-            //await Page.WaitForSelectorAsync("//h1");
+            await Page.WaitForSelectorAsync("//a[@id='tdb4']/span");
             //return await Page.InnerTextAsync(headerLocator);
             return await Page.InnerTextAsync("//a[@id='tdb4']/span");
         }
