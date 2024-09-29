@@ -30,17 +30,17 @@ jobs:
       - name: Update PATH
         run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
-      - name: List global tools
-        run: dotnet tool list --global
+        #- name: List global tools
+        #run: dotnet tool list --global
 
       - name: Build the project
         run: dotnet build TechnicalTaskWithPlaywright.sln
 
-      - name: List Playwright Cache
-        run: ls -R $HOME/.cache/ms-playwright
+        #- name: List Playwright Cache
+        #run: ls -R $HOME/.cache/ms-playwright
         
       - name: Install Playwright Browsers
-        run: playwright install
+        run: playwright install || (echo "Failed to install Playwright browsers" && exit 1)
 
   test:
     runs-on: ubuntu-latest
