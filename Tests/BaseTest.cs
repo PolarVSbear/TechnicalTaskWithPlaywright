@@ -13,7 +13,7 @@ namespace Tests
         public async Task Setup()
         {
             _playwright = await Playwright.CreateAsync();
-            Driver = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
+            Driver = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
             var page = await Driver.NewPageAsync();
             MainPage = new MainPage(page);
         }
