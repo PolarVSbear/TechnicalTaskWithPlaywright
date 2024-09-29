@@ -30,26 +30,21 @@ jobs:
       - name: Update PATH
         run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
-        #- name: List global tools
-        #run: dotnet tool list --global
+      - name: List global tools
+        run: dotnet tool list --global
 
-      - name: Build the project
+      - name: Build the project  # Add this step
         run: dotnet build TechnicalTaskWithPlaywright.sln
-
-        #- name: List Playwright Cache
-        #run: ls -R $HOME/.cache/ms-playwright
         
       - name: Install Playwright Browsers
-        run: playwright install || (echo "Failed to install Playwright browsers" && exit 1)
+        run: playwright install
 
   test:
     runs-on: ubuntu-latest
     needs: build
     strategy:
       matrix:
-        test: 
-          - DropDownTest
-          - LoginTest
+        browser: [chromium, firefox]
 
     steps:
       - name: Checkout code
@@ -63,8 +58,22 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore TechnicalTaskWithPlaywright.sln
 
+      - name: Install Playwright CLI
+        run: dotnet tool install --global Microsoft.Playwright.CLI
+
+      - name: Update PATH
+        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
+      - name: List global tools
+        run: dotnet tool list --global
+
+      - name: Build the project  # Add this step
+        run: dotnet build TechnicalTaskWithPlaywright.sln
+
+      - name: Install Playwright Browsers
+        run: playwright install
+
       - name: Run tests
-        #run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal --filter "FullyQualifiedName~${{ matrix.test }}"
         run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal --logger "console;verbosity=detailed"
 
       - name: Install Allure CLI
@@ -74,6 +83,6 @@ jobs:
       - name: Generate Allure Report
         run: |
           allure generate ./allure-results --output ./allure-report
-
+          
       - name: Serve Allure Report
         run: allure serve ./allure-report
