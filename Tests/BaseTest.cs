@@ -15,6 +15,7 @@ namespace Tests
             _playwright = await Playwright.CreateAsync();
             Driver = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
             var page = await Driver.NewPageAsync();
+            page.Console += (_, msg) => Console.WriteLine($"Console: {msg.Type}: {msg.Text}");
             MainPage = new MainPage(page);
         }
 
