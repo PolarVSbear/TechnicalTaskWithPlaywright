@@ -34,8 +34,12 @@ namespace Core
         private async Task<string> AssignHeaderText()
         {
             //await Page.WaitForSelectorAsync(headerLocator);
-            await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-            return await Page.InnerTextAsync(headerLocator);
+            //await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+            //return await Page.InnerTextAsync(headerLocator);
+
+            var header = Page.Locator(headerLocator);
+            await header.WaitForAsync();
+            return await header.InnerTextAsync();
         }
 
         public async Task<bool> IsHeaderContains()
