@@ -8,6 +8,7 @@ namespace Core
         private string address = "https://practice.bpbonline.com/";
         private string dropDownItem = "Microsoft";
         //private string myAccountHeader = "My Account Information";
+        private string myAccountHeader = "Welcome";
         private string myLogOff = "Log Off";
         private string email = "bpb@bpb.com";
         private string password = "bpb@123";
@@ -57,15 +58,15 @@ namespace Core
 
         private async Task<string> AssignLogOffText()
         {
-            await Page.WaitForSelectorAsync("//a[@id='tdb4']/span");
+            await Page.WaitForSelectorAsync("//h1");
             //return await Page.InnerTextAsync(headerLocator);
-            return await Page.InnerTextAsync("//a[@id='tdb4']/span");
+            return await Page.InnerTextAsync("//h1");
         }
 
         public async Task<bool> IsMyAccountHeaderContains()
         {
             var headerText = await AssignLogOffText();
-            return headerText.Contains(myLogOff, StringComparison.OrdinalIgnoreCase);
+            return headerText.Contains(myAccountHeader, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
