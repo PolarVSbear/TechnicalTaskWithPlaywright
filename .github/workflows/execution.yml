@@ -44,7 +44,9 @@ jobs:
     needs: build
     strategy:
       matrix:
-        browser: [chromium, firefox]
+        test: 
+          - DropDownTest
+          - LoginTest
 
     steps:
       - name: Checkout code
@@ -58,20 +60,5 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore TechnicalTaskWithPlaywright.sln
 
-      - name: Install Playwright CLI
-        run: dotnet tool install --global Microsoft.Playwright.CLI
-
-      - name: Update PATH
-        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
-
-      - name: List global tools
-        run: dotnet tool list --global
-
-      - name: Build the project  # Add this step
-        run: dotnet build TechnicalTaskWithPlaywright.sln
-
-      - name: Install Playwright Browsers
-        run: playwright install
-
       - name: Run tests
-        run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal --logger "console;verbosity=detailed"
+        run: dotnet test TechnicalTaskWithPlaywright.Tests/TechnicalTaskWithPlaywright.Tests.csproj --configuration Release --verbosity normal --filter "FullyQualifiedName~${{ matrix.test }}"
