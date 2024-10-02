@@ -7,14 +7,9 @@ namespace Core
         protected IPage Page;
         private string address = "https://practice.bpbonline.com/";
         private string dropDownItem = "Microsoft";
-        //private string myAccountHeader = "My Account Information";
-        //private string myAccountHeader = "Welcome";
-        private string myLogOff = "Log Off";
         private string email = "bpb@bpb.com";
         private string password = "bpb@123";
         private string headerLocator = "//div[@id='bodyContent']/h1";
-        //private string headerLocator = "//h1";
-        //private string logOffLocator = "//a[@id='tdb4']/span";
         private string myAccountLocator = "text='My Account'";
         private string emailLocator = "[name='email_address']";
         private string passLocator = "[name='password']";
@@ -37,8 +32,7 @@ namespace Core
 
         private async Task<string> AssignHeaderText()
         {
-            //await Page.WaitForSelectorAsync("//h1");
-            //return await Page.InnerTextAsync(headerLocator);
+            await Page.WaitForSelectorAsync(headerLocator);
             return await Page.InnerTextAsync(headerLocator);
         }
 
@@ -56,17 +50,9 @@ namespace Core
             await Page.ClickAsync(signInLocator);
         }
 
-        private async Task<string> AssignLogOffText()
+        public async Task<bool> IsHeaderNotNull()
         {
-            await Page.WaitForSelectorAsync("//h1");
-            //return await Page.InnerTextAsync(headerLocator);
-            return await Page.InnerTextAsync("//h1");
-        }
-
-        public async Task<bool> IsMyAccountHeaderContains()
-        {
-            var headerText = await AssignLogOffText();
-            //return headerText.Contains(myAccountHeader, StringComparison.OrdinalIgnoreCase);
+            var headerText = await AssignHeaderText();
             return !string.IsNullOrEmpty(headerText);
         }
     }
