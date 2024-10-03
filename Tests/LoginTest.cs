@@ -1,4 +1,5 @@
 ﻿using Allure.NUnit;
+using Core;
 
 namespace Tests
 {
@@ -10,9 +11,10 @@ namespace Tests
         [Test]
         public async Task Test()
         {
-            await MainPage.NavigatePage();
-            await MainPage.FillMyAccount();
-            Assert.IsTrue(await MainPage.IsHeaderNotNull());
+            await MainPage.NavigatePage(PageType.LoginPage);
+            var loginPage = await MainPage.GoToMyAccount();
+            await loginPage.FillMyAccount();
+            Assert.IsTrue(await loginPage.IsHeaderNotNull());
         }
     }
 }

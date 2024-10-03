@@ -11,9 +11,9 @@ namespace Tests
         [Test]
         public async Task Test()
         {
-            await MainPage.NavigatePage();
-            await MainPage.SelectDropDownItem();
-            Assert.IsTrue(await MainPage.IsHeaderContains());
+            await MainPage.NavigatePage(PageType.MicrosoftPage);
+            var microsoftPage = await MainPage.SelectDropDownItem();
+            Assert.IsTrue(await microsoftPage.IsHeaderContains());
         }
     }
 }
