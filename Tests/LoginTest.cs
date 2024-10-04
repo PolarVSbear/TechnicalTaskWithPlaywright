@@ -11,7 +11,7 @@ namespace Tests
         [Test]
         public async Task Test()
         {
-            await MainPage.NavigatePage(PageType.LoginPage);
+            await MainPage.NavigatePage();
             var loginPage = await MainPage.GoToMyAccount();
             await loginPage.FillMyAccount();
             Assert.IsTrue(await loginPage.IsHeaderNotNull());

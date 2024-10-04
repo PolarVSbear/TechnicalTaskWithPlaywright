@@ -15,7 +15,7 @@ namespace Core
             Page = page;
         }
 
-        public async Task NavigatePage(PageType pageType)
+        public async Task NavigatePage()
         {
             await Page.GotoAsync(address);
         }

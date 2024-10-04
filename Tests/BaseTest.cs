@@ -11,7 +11,7 @@ namespace Tests
         [SetUp]
         public async Task Setup()
         {
-            Driver = await BrowserFactory.LaunchBrowserAsync();
+            Driver = await BrowserFactory.BrowserInstance.LaunchBrowserAsync();
             var page = await Driver.NewPageAsync();
             MainPage = new MainPage(page);
         }
@@ -20,7 +20,7 @@ namespace Tests
         public async Task TearDown()
         {
             await Driver.CloseAsync();
-            await BrowserFactory.CloseBrowserAsync();
+            await BrowserFactory.BrowserInstance.CloseBrowserAsync();
         }
     }
 }

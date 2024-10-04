@@ -2,29 +2,46 @@
 
 namespace Core
 {
-    public static class BrowserFactory
+    public class BrowserFactory : IBrowserFactory
     {
         private static IBrowser? _browser;
 
-        public static async Task<IBrowser> LaunchBrowserAsync(bool headless = true)
+        private static BrowserFactory _browserInstance = new BrowserFactory();
+        private static readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
+
+        private BrowserFactory() { }
+
+        public static IBrowserFactory BrowserInstance
         {
-            if (_browser != null)
-            {
-                return _browser;
-            }
-
-            var playwright = await Playwright.CreateAsync();
-            _browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
-
-            return _browser;
+            get {return _browserInstance;}
         }
 
-        public static async Task CloseBrowserAsync()
+        public async Task<IBrowser> LaunchBrowserAsync(bool headless = true)
         {
-            if (_browser != null)
+            await _semaphoreSlim.WaitAsync();
+            try
+            {
+                var playwright = await Playwright.CreateAsync();
+                _browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = headless });
+                return _browser;
+            }
+            finally
+            {
+                _semaphoreSlim?.Release();
+            }
+        }
+
+        public async Task CloseBrowserAsync()
+        {
+            await _semaphoreSlim.WaitAsync();
+            try
             {
                 await _browser.CloseAsync();
-                _browser = null;
+                //_browser = null;
+            }
+            finally
+            {
+                _semaphoreSlim.Release();
             }
         }
     }
