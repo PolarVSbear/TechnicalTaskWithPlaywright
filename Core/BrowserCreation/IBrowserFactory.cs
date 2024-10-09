@@ -1,6 +1,6 @@
 ﻿using Microsoft.Playwright;
 
-namespace Core
+namespace Core.BrowserCreation
 {
     public interface IBrowserFactory
     {

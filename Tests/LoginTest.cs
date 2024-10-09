@@ -11,10 +11,17 @@ namespace Tests
         [Test]
         public async Task Test()
         {
-            await MainPage.NavigatePage();
-            var loginPage = await MainPage.GoToMyAccount();
-            await loginPage.FillMyAccount();
-            Assert.IsTrue(await loginPage.IsHeaderNotNull());
+            //await MainPage.NavigatePage();
+            //await BasePage.NavigatePage();
+            await LoginPageService.NavigatePage();
+            await LoginPageService.GoToMyAccount();
+            await LoginPageService.FillMyAccount();
+
+            //var loginPage = await MainPage.GoToMyAccount();
+            //var loginPage = await LoginPageService.GoToMyAccount();
+            //await loginPage.FillMyAccount();
+            //Assert.IsTrue(await loginPage.IsHeaderNotNull());
+            Assert.IsTrue(await LoginPageService.IsHeaderNotNull());
         }
     }
 }

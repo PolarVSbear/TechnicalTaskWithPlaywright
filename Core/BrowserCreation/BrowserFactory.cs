@@ -1,6 +1,6 @@
 ﻿using Microsoft.Playwright;
 
-namespace Core
+namespace Core.BrowserCreation
 {
     public class BrowserFactory : IBrowserFactory
     {
@@ -13,7 +13,7 @@ namespace Core
 
         public static IBrowserFactory BrowserInstance
         {
-            get {return _browserInstance;}
+            get { return _browserInstance; }
         }
 
         public async Task<IBrowser> LaunchBrowserAsync(bool headless = true)
