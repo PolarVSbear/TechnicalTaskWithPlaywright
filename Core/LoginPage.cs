@@ -10,7 +10,7 @@ namespace Core
         private string emailLocator = "[name='email_address']";
         private string passLocator = "[name='password']";
         private string signInLocator = "#tdb5";
-        private string myAccountLocator = "text='My Account'";
+        private string myAccountLocator = "//a/span[text()='My Account']";
 
         public ILocator HeaderLocator => Page.Locator(headerLocator);
         public ILocator EmailLocator => Page.Locator(emailLocator);

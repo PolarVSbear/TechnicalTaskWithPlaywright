@@ -2,30 +2,27 @@
 
 namespace Core
 {
-    public class LoginPageService : BasePage, ILoginPage
+    public class LoginPageService : LoginPage, ILoginPage
     {
-        private readonly LoginPage _loginPage;
-
         public LoginPageService(IPage page) : base(page)
         {
-            _loginPage = new LoginPage(page);
         }
 
         public async Task GoToMyAccount()
         {
-            await _loginPage.MyAccountLocator.ClickAsync();
+            await MyAccountLocator.ClickAsync();
         }
 
         private async Task<string> AssignHeaderText()
         {
-            return await _loginPage.HeaderLocator.InnerTextAsync();
+            return await HeaderLocator.InnerTextAsync();
         }
 
         public async Task FillMyAccount()
         {
-            await _loginPage.EmailLocator.FillAsync(_loginPage.email);
-            await _loginPage.PassLocator.FillAsync(_loginPage.password);
-            await _loginPage.SignInLocator.ClickAsync();
+            await EmailLocator.FillAsync(email);
+            await PassLocator.FillAsync(password);
+            await SignInLocator.ClickAsync();
         }
 
         public async Task<bool> IsHeaderNotNull()

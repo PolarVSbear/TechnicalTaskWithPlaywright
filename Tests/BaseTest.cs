@@ -7,24 +7,17 @@ namespace Tests
     public class BaseTest
     {
         private IBrowser Driver;
-        //protected MainPage MainPage;
-        //protected BasePage BasePage;
         protected LoginPageService LoginPageService;
-        protected ILoginFactory LoginFactory;
+        protected static LoginFactory LoginFactory = LoginFactory.Instance;
         protected MicrosoftPageService MicrosoftPageService;
-        protected IMicrosoftFactory MicrosoftFactory;
-        
+        protected static MicrosoftFactory MicrosoftFactory = MicrosoftFactory.Instance;
 
         [SetUp]
         public async Task Setup()
         {
             Driver = await BrowserFactory.BrowserInstance.LaunchBrowserAsync();
             var page = await Driver.NewPageAsync();
-            //MainPage = new MainPage(page);
-            //BasePage = new BasePage(page);
-            LoginFactory = new LoginFactory();
             LoginPageService = LoginFactory.CreateLoginPageService(page);
-            MicrosoftFactory = new MicrosoftFactory();
             MicrosoftPageService = MicrosoftFactory.CreateMicrosoftPageService(page);
         }
 
@@ -32,7 +25,7 @@ namespace Tests
         public async Task TearDown()
         {
             await Driver.CloseAsync();
-            await BrowserFactory.BrowserInstance.CloseBrowserAsync();
+            //await BrowserFactory.BrowserInstance.CloseBrowserAsync();
         }
     }
 }

@@ -2,32 +2,26 @@
 
 namespace Core
 {
-    public class MicrosoftPageService : BasePage, IMicrosoftPage
+    public class MicrosoftPageService : MicrosoftPage, IMicrosoftPage
     {
-        private readonly MicrosoftPage _microsoftPage;
-
         public MicrosoftPageService(IPage page) : base(page)
         {
-            _microsoftPage = new MicrosoftPage(page);
         }
 
-        public async Task<IMicrosoftPage> SelectDropDownItem()
+        public async Task SelectDropDownItem()
         {
-            await _microsoftPage.DropDown.SelectOptionAsync(_microsoftPage.dropDownItem);
-            return new MicrosoftPageService(Page);
+            await DropDown.SelectOptionAsync(dropDownItem);
         }
 
         private async Task<string> AssignHeaderText()
         {
-            //await Page.WaitForSelectorAsync(headerLocator);
-            return await _microsoftPage.HeaderLocator.InnerTextAsync();
-            //return await Page.InnerTextAsync(headerLocator);
+            return await HeaderLocator.InnerTextAsync();
         }
 
         public async Task<bool> IsHeaderContains()
         {
             var headerText = await AssignHeaderText();
-            return headerText.Contains(_microsoftPage.dropDownItem, StringComparison.OrdinalIgnoreCase);
+            return headerText.Contains(dropDownItem, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

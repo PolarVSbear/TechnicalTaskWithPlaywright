@@ -37,7 +37,7 @@ namespace Core.BrowserCreation
             try
             {
                 await _browser.CloseAsync();
-                //_browser = null;
+                _browser = null;
             }
             finally
             {

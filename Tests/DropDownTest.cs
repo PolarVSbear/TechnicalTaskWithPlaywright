@@ -13,8 +13,7 @@ namespace Tests
         {
             await MicrosoftPageService.NavigatePage();
             await MicrosoftPageService.SelectDropDownItem();
-            //await BasePage.NavigatePage();
-            //var microsoftPage = await MainPage.SelectDropDownItem();
+            await MicrosoftPageService.SelectDropDownItem();
             Assert.IsTrue(await MicrosoftPageService.IsHeaderContains());
         }
     }
