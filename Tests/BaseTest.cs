@@ -1,27 +1,31 @@
 ﻿using Core;
+using Core.BrowserCreation;
 using Microsoft.Playwright;
 
 namespace Tests
 {
     public class BaseTest
     {
-        private IPlaywright _playwright;
         private IBrowser Driver;
-        protected MainPage MainPage;
+        protected LoginPageService LoginPageService;
+        protected static LoginFactory LoginFactory = LoginFactory.Instance;
+        protected MicrosoftPageService MicrosoftPageService;
+        protected static MicrosoftFactory MicrosoftFactory = MicrosoftFactory.Instance;
 
         [SetUp]
         public async Task Setup()
         {
-            _playwright = await Playwright.CreateAsync();
-            Driver = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+            Driver = await BrowserFactory.BrowserInstance.LaunchBrowserAsync();
             var page = await Driver.NewPageAsync();
-            MainPage = new MainPage(page);
+            LoginPageService = LoginFactory.CreateLoginPageService(page);
+            MicrosoftPageService = MicrosoftFactory.CreateMicrosoftPageService(page);
         }
 
         [TearDown]
         public async Task TearDown()
         {
             await Driver.CloseAsync();
+            //await BrowserFactory.BrowserInstance.CloseBrowserAsync();
         }
     }
 }
