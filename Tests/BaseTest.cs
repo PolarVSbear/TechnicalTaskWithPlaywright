@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.BrowserCreation;
 using Microsoft.Playwright;
+[assembly:Parallelizable(ParallelScope.All)]
 
 namespace Tests
 {
@@ -8,9 +9,9 @@ namespace Tests
     {
         private IBrowser Driver;
         protected LoginPageService LoginPageService;
-        protected static LoginFactory LoginFactory = LoginFactory.Instance;
+        protected static ILoginFactory LoginFactory = Core.LoginFactory.Instance;
         protected MicrosoftPageService MicrosoftPageService;
-        protected static MicrosoftFactory MicrosoftFactory = MicrosoftFactory.Instance;
+        protected static IMicrosoftFactory MicrosoftFactory = Core.MicrosoftFactory.Instance;
 
         [SetUp]
         public async Task Setup()

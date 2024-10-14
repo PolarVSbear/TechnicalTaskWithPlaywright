@@ -4,7 +4,7 @@ namespace Core
 {
     public interface ILoginFactory
     {
-        public static LoginFactory? Instance { get; }
+        public static ILoginFactory? Instance { get; }
         LoginPageService CreateLoginPageService(IPage page);
     }
 }

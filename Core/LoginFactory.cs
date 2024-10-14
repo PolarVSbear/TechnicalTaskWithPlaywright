@@ -4,11 +4,11 @@ namespace Core
 {
     public class LoginFactory : ILoginFactory
     {
-        private static LoginFactory _instance = new LoginFactory();
+        private static ILoginFactory _instance = new LoginFactory();
         private LoginFactory()
         {
         }
-        public static LoginFactory Instance
+        public static ILoginFactory Instance
         {
             get
             {

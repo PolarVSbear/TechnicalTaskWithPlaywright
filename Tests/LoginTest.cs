@@ -4,8 +4,6 @@ using Core;
 namespace Tests
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.All)]
-    [AllureNUnit]
     public class LoginTest : BaseTest
     {
         [Test]
@@ -14,7 +12,7 @@ namespace Tests
             await LoginPageService.NavigatePage();
             await LoginPageService.GoToMyAccount();
             await LoginPageService.FillMyAccount();
-            Assert.IsTrue(await LoginPageService.IsHeaderNotNull());
+            Assert.That(await LoginPageService.IsHeaderNotNull(), Is.True, "The header is empty.");
         }
     }
 }
