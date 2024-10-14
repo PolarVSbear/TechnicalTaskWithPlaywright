@@ -4,16 +4,14 @@ using Core;
 namespace Tests
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.All)]
-    [AllureNUnit]
     public class DropDownTest : BaseTest
     {
         [Test]
         public async Task Test()
         {
-            await MainPage.NavigatePage();
-            await MainPage.SelectDropDownItem();
-            Assert.IsTrue(await MainPage.IsHeaderContains());
+            await MicrosoftPageService.NavigatePage();
+            await MicrosoftPageService.SelectDropDownItem();
+            Assert.That(await MicrosoftPageService.IsHeaderContains(), Is.True, "The header doesn't equal.");
         }
     }
 }
